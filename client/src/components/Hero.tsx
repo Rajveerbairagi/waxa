@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, TrendingUp, Users, Zap, Target } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Link } from 'wouter';
 
 function AnimatedCounter({ value, suffix = '', duration = 2, decimals = 0 }: { value: number; suffix?: string; duration?: number; decimals?: number }) {
   const [count, setCount] = useState(0);
@@ -73,7 +74,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight"
               data-testid="text-hero-headline"
             >
               We Grow Brands &{' '}
@@ -84,7 +85,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed"
+              className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed"
               data-testid="text-hero-subheadline"
             >
               Social media strategy, content creation, paid ads & brand growth engineered for results.
@@ -96,22 +97,26 @@ export default function Hero() {
               transition={{ delay: 0.5 }}
               className="flex flex-col sm:flex-row gap-4 mb-12"
             >
-              <Button
-                size="lg"
-                className="text-lg px-8 gap-2 gradient-bg border-0"
-                data-testid="button-hero-get-strategy"
-              >
-                Get Marketing Strategy
-                <ArrowRight className="h-5 w-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-lg px-8 gap-2"
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  className="px-8 gap-2 gradient-bg border-0"
+                  data-testid="button-hero-get-strategy"
+                >
+                  Get Marketing Strategy
+                  <ArrowRight className="h-5 w-5" />
+                </Button>
+              </Link>
+              <button
+                onClick={() => {
+                  const element = document.getElementById('references');
+                  if (element) element.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="inline-flex items-center justify-center gap-2 px-8 py-3 border-2 border-gray-300 rounded-md hover:bg-gray-50 transition-colors text-base font-medium"
                 data-testid="button-hero-view-work"
               >
                 View Work
-              </Button>
+              </button>
             </motion.div>
 
             <motion.div

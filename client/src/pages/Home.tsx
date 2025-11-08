@@ -13,13 +13,23 @@ export default function Home() {
     <div>
       <Hero />
       <ProblemSolutionSection />
-      <ServicesSection />
+      <div id="services">
+        <ServicesSection />
+      </div>
       <AdvantagesSection />
-      <ReferencesSection />
+      <div id="references">
+        <ReferencesSection />
+      </div>
       <TestimonialsSection />
-      <PricingSection />
-      <FAQSection />
-      <ContactSection />
+      <div id="pricing">
+        <PricingSection />
+      </div>
+      <div id="faq">
+        <FAQSection />
+      </div>
+      <div id="contact">
+        <ContactSection />
+      </div>
     </div>
   );
 }

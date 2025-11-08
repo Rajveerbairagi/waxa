@@ -6,34 +6,73 @@ import { motion, AnimatePresence } from 'framer-motion';
 import waxaLogo from '@assets/1_1762636982582.png';
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
+  const [pendingScroll, setPendingScroll] = useState<string | null>(null);
 
+  // Handle pending scroll after navigation
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    if (pendingScroll && location === '/') {
+      const scrollToElement = () => {
+        const element = document.getElementById(pendingScroll);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          setPendingScroll(null);
+        } else {
+          // Element not ready yet, try again
+          setTimeout(scrollToElement, 50);
+        }
+      };
+      // Small delay to ensure DOM is ready
+      setTimeout(scrollToElement, 100);
+    }
+  }, [location, pendingScroll]);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  const handleNavClick = (href: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    if (href === '/') {
+      if (location === '/') {
+        // Already on home, scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        // Navigate to home
+        setLocation('/');
+      }
+    } else if (href.startsWith('#')) {
+      const sectionId = href.substring(1);
+      if (location !== '/') {
+        // Navigate to home first, store scroll target
+        setPendingScroll(sectionId);
+        setLocation('/');
+      } else {
+        // Already on home, scroll immediately
+        scrollToSection(sectionId);
+      }
+    }
+  };
 
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/solutions', label: 'Solutions' },
-    { href: '/approach', label: 'Approach' },
-    { href: '/references', label: 'References' },
-    { href: '/pricing', label: 'Pricing' },
-    { href: '/faq', label: 'FAQ' },
-    { href: '/contact', label: 'Contact' },
+    { href: '#services', label: 'Services' },
+    { href: '#pricing', label: 'Pricing' },
+    { href: '#references', label: 'Work' },
+    { href: '#faq', label: 'FAQ' },
+    { href: '#contact', label: 'Contact' },
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/95 backdrop-blur-lg shadow-lg border-b border-border' : 'bg-transparent'
-      }`}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg shadow-sm border-b border-gray-100">
+
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" data-testid="link-home">
@@ -47,45 +86,37 @@ export default function Navbar() {
 
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link
+              <button
                 key={link.href}
-                href={link.href}
+                onClick={(e) => handleNavClick(link.href, e as any)}
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors cursor-pointer relative"
                 data-testid={`link-nav-${link.label.toLowerCase()}`}
               >
-                <motion.span
-                  whileHover={{ y: -2 }}
-                  className={`text-sm font-medium transition-colors cursor-pointer relative ${
-                    location === link.href
-                      ? 'text-primary'
-                      : isScrolled
-                      ? 'text-foreground hover:text-primary'
-                      : 'text-white hover:text-white/80'
-                  }`}
-                >
-                  {link.label}
-                  {location === link.href && (
-                    <motion.div
-                      layoutId="navbar-indicator"
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 gradient-bg"
-                    />
-                  )}
-                </motion.span>
-              </Link>
+                {link.label}
+                {location === link.href && !link.href.startsWith('#') && (
+                  <motion.div
+                    layoutId="navbar-indicator"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 gradient-bg"
+                  />
+                )}
+              </button>
             ))}
-            <Button
-              size="default"
-              className="gradient-bg border-0 gap-2"
-              data-testid="button-book-call"
-            >
-              Book Strategy Call
-              <ArrowRight className="h-4 w-4" />
-            </Button>
+            <Link href="/contact">
+              <Button
+                size="default"
+                className="gradient-bg border-0 gap-2"
+                data-testid="button-book-call"
+              >
+                Book Strategy Call
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
           </div>
 
           <Button
             size="icon"
             variant="ghost"
-            className={`lg:hidden ${!isScrolled && 'text-white hover:text-white'}`}
+            className="lg:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             data-testid="button-mobile-menu"
           >
@@ -103,28 +134,26 @@ export default function Navbar() {
             >
               <div className="mt-4 pb-4 flex flex-col gap-4 glass-effect rounded-lg p-4">
                 {navLinks.map((link) => (
-                  <Link
+                  <button
                     key={link.href}
-                    href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(e) => handleNavClick(link.href, e as any)}
+                    className={`text-sm font-medium cursor-pointer block py-2 text-left ${
+                      location === link.href && !link.href.startsWith('#') ? 'text-primary font-semibold' : 'text-foreground'
+                    }`}
                     data-testid={`link-mobile-${link.label.toLowerCase()}`}
                   >
-                    <span
-                      className={`text-sm font-medium cursor-pointer block py-2 ${
-                        location === link.href ? 'text-primary font-semibold' : 'text-foreground'
-                      }`}
-                    >
-                      {link.label}
-                    </span>
-                  </Link>
+                    {link.label}
+                  </button>
                 ))}
-                <Button
-                  className="w-full gradient-bg border-0 gap-2"
-                  data-testid="button-mobile-book-call"
-                >
-                  Book Strategy Call
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
+                <Link href="/contact">
+                  <Button
+                    className="w-full gradient-bg border-0 gap-2"
+                    data-testid="button-mobile-book-call"
+                  >
+                    Book Strategy Call
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
               </div>
             </motion.div>
           )}

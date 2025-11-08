@@ -49,19 +49,19 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section className="py-24 px-6 bg-muted/30">
+    <section className="py-16 px-6 bg-muted/30">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4" data-testid="text-services-headline">
+          <h2 className="font-bold mb-3" data-testid="text-services-headline">
             Services That <span className="gradient-text">Drive Results</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base text-muted-foreground max-w-2xl mx-auto">
             From strategy to execution, we deliver comprehensive digital marketing solutions that scale your brand.
           </p>
         </motion.div>
@@ -81,13 +81,12 @@ export default function ServicesSection() {
                   className="p-6 h-full hover-elevate cursor-pointer group"
                   data-testid={`card-service-${service.id}`}
                 >
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mb-4 group-hover:shadow-lg transition-shadow"
+                  <div
+                    className="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center mb-4 group-hover:shadow-lg transition-shadow"
                     data-testid={`icon-service-${service.id}`}
                   >
-                    <Icon className="h-7 w-7 text-white" />
-                  </motion.div>
+                    <Icon className="h-6 w-6 text-white" />
+                  </div>
                   <h3 className="text-xl font-bold mb-3">{service.title}</h3>
                   <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
                     {service.description}
