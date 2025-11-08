@@ -22,8 +22,9 @@ export default function Navbar() {
     { href: '/', label: 'Home' },
     { href: '/solutions', label: 'Solutions' },
     { href: '/approach', label: 'Approach' },
-    { href: '/advantages', label: 'Why Us' },
-    { href: '/references', label: 'Case Studies' },
+    { href: '/references', label: 'References' },
+    { href: '/pricing', label: 'Pricing' },
+    { href: '/faq', label: 'FAQ' },
     { href: '/contact', label: 'Contact' },
   ];
 

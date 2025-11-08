@@ -1,12 +1,45 @@
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, TrendingUp, Users, Zap, Target } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+
+function AnimatedCounter({ value, suffix = '', duration = 2, decimals = 0 }: { value: number; suffix?: string; duration?: number; decimals?: number }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    let startTime: number;
+    let animationFrame: number;
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+      
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const currentValue = easeOutQuart * value;
+      setCount(decimals > 0 ? Number(currentValue.toFixed(decimals)) : Math.floor(currentValue));
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrame);
+  }, [value, duration, isInView, decimals]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+}
 
 export default function Hero() {
   const stats = [
-    { icon: TrendingUp, value: '340%', label: 'Growth' },
-    { icon: Users, value: '2.5M+', label: 'Reach' },
-    { icon: Target, value: '450%', label: 'ROI' },
+    { icon: TrendingUp, value: 340, suffix: '%', label: 'Growth', decimals: 0 },
+    { icon: Users, value: 2.5, suffix: 'M+', label: 'Reach', decimals: 1 },
+    { icon: Target, value: 450, suffix: '%', label: 'ROI', decimals: 0 },
   ];
 
   return (
@@ -93,14 +126,16 @@ export default function Hero() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.7 + index * 0.1 }}
-                  className="flex items-center gap-3"
+                  className="flex items-center gap-3 glass-effect px-4 py-3 rounded-xl"
                   data-testid={`stat-${index}`}
                 >
-                  <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center shadow-lg">
                     <stat.icon className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold gradient-text">{stat.value}</div>
+                    <div className="text-2xl font-bold gradient-text">
+                      <AnimatedCounter value={stat.value} suffix={stat.suffix} decimals={stat.decimals} />
+                    </div>
                     <div className="text-sm text-muted-foreground">{stat.label}</div>
                   </div>
                 </motion.div>

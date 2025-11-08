@@ -10,6 +10,7 @@ import Solutions from "@/pages/Solutions";
 import Approach from "@/pages/Approach";
 import Advantages from "@/pages/Advantages";
 import References from "@/pages/References";
+import Pricing from "@/pages/Pricing";
 import FAQ from "@/pages/FAQ";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
@@ -22,6 +23,7 @@ function Router() {
       <Route path="/approach" component={Approach} />
       <Route path="/advantages" component={Advantages} />
       <Route path="/references" component={References} />
+      <Route path="/pricing" component={Pricing} />
       <Route path="/faq" component={FAQ} />
       <Route path="/contact" component={Contact} />
       <Route component={NotFound} />
