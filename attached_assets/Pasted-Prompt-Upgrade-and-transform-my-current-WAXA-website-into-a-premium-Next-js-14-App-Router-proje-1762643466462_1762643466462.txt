@@ -1,0 +1,146 @@
+Prompt:
+"Upgrade and transform my current WAXA website into a premium Next.js 14+ (App Router) project with Tailwind CSS + Framer Motion, preserving content but improving UI/UX dramatically.
+
+🎨 Design Style
+
+Modern digital agency look (Web3 / Gradient / Glassmorphism)
+
+Bold headings + elegant subtext
+
+Clean spacing, breathing room, premium feel
+
+Gradient accents (blue ➜ teal)
+
+Smooth animations like Stripe + Hi-Social website
+
+Consistent theme with WAXA branding colors
+
+Fonts:
+Use Satoshi or Inter / Poppins for clean modern look.
+
+✅ UI / UX Improvements
+
+Increase logo size, better spacing
+
+Premium navbar (sticky, blur, animated underline active link)
+
+Smooth scroll + hover animations
+
+Buttons fully working with subtle scale + glow hover
+
+Eye-catching hero section with animated stats
+
+Glass card style feature blocks
+
+Mobile responsive menu + animation drawer
+
+🧭 Pages & Navigation
+
+Include:
+
+Home
+
+Solutions
+
+Approach
+
+References / Work
+
+Pricing
+
+FAQ
+
+Contact
+
+All nav links must work. Menu links scroll or route properly.
+
+💰 Pricing Section
+
+Add 3 plans in USD:
+
+Plan	Price	Highlights
+Starter	$299/mo	Social posts, basic growth
+Growth	$799/mo	Paid ads, content + analytics
+Scale	$1499/mo	Full management, UGC, scaling
+
+Highlight middle plan
+
+Add comparison tick icons
+
+CTA buttons “Start Plan”
+
+✅ Contact Form + Backend
+
+Add working form: name, email, company, message
+Submit to Next.js API route and show success toast.
+
+Setup:
+
+/api/contact POST route
+
+Nodemailer or dummy JSON logging
+
+🌟 Testimonials
+
+Add modern testimonial slider with:
+
+Card sliding animation
+
+Profile photo + name/title
+
+Smooth auto play + manual swipe
+
+Subtle gradient background
+
+📈 Animations
+
+Use Framer Motion:
+
+Fade-in on scroll
+
+Slide-up components
+
+Stagger animations
+
+Counter animation for stats
+
+Button hover scale
+
+Gradient glow effects
+
+✅ Technical Requirements
+
+Next.js App Router
+
+Tailwind CSS
+
+Framer Motion
+
+next/font for typography
+
+Reusable components folder
+
+SEO meta tags for each page
+
+Dark-mode ready structure
+
+Fully responsive
+
+🎯 Goal
+
+Deliver a high-end digital marketing agency website that feels premium, conversion-focused, and visually impressive — similar to:
+
+hi-social.de
+
+stripe.com
+
+wealthy social media agency landing pages
+
+Web3 startup aesthetics
+
+Use clean, balanced spacing and modern motion.
+
+Output:
+Full Next.js project structure & updated UI code.
+
+Make everything look and feel like a modern, gradient growth agency website with stunning UX.”
