@@ -28,12 +28,14 @@
   --popover-border: 0 0% 91%;
   --primary: 211 100% 50%;
   --primary-foreground: 0 0% 98%;
-  --secondary: 0 0% 90%;
-  --secondary-foreground: 0 0% 10%;
+  --secondary: 150 100% 39%;
+  --secondary-foreground: 0 0% 98%;
   --muted: 0 2% 93%;
   --muted-foreground: 0 0% 35%;
   --accent: 211 12% 92%;
   --accent-foreground: 0 0% 10%;
+  --gradient-start: 211 100% 50%;
+  --gradient-end: 150 100% 39%;
   --destructive: 0 84% 45%;
   --destructive-foreground: 0 0% 98%;
   --input: 0 0% 75%;
@@ -112,14 +114,16 @@
   --popover: 0 0% 14%;
   --popover-foreground: 0 0% 95%;
   --popover-border: 0 0% 17%;
-  --primary: 211 100% 45%;
+  --primary: 211 100% 55%;
   --primary-foreground: 0 0% 98%;
-  --secondary: 0 0% 18%;
-  --secondary-foreground: 0 0% 95%;
+  --secondary: 150 100% 45%;
+  --secondary-foreground: 0 0% 98%;
   --muted: 0 2% 16%;
   --muted-foreground: 0 0% 70%;
   --accent: 211 12% 17%;
   --accent-foreground: 0 0% 95%;
+  --gradient-start: 211 100% 55%;
+  --gradient-end: 150 100% 45%;
   --destructive: 0 84% 35%;
   --destructive-foreground: 0 0% 98%;
   --input: 0 0% 30%;
@@ -176,6 +180,29 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--gradient-start)) 0%, hsl(var(--gradient-end)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, hsl(var(--gradient-start)) 0%, hsl(var(--gradient-end)) 100%);
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .glass-effect {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
 

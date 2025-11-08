@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { motion } from 'framer-motion';
 
 const faqs = [
   {
@@ -48,28 +49,43 @@ export default function FAQSection() {
   return (
     <section className="py-24 px-6">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4" data-testid="text-faq-headline">
-          Frequently Asked Questions
-        </h2>
-        <p className="text-xl text-muted-foreground text-center mb-16">
-          Everything you need to know about partnering with WAXA.
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4" data-testid="text-faq-headline">
+            <span className="gradient-text">Frequently</span> Asked Questions
+          </h2>
+          <p className="text-xl text-muted-foreground">
+            Everything you need to know about partnering with WAXA.
+          </p>
+        </motion.div>
 
         <Accordion type="single" collapsible className="space-y-4">
-          {faqs.map((faq) => (
-            <AccordionItem
+          {faqs.map((faq, index) => (
+            <motion.div
               key={faq.id}
-              value={`item-${faq.id}`}
-              className="border rounded-lg px-6"
-              data-testid={`accordion-faq-${faq.id}`}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
             >
-              <AccordionTrigger className="text-left hover:no-underline">
-                <span className="font-semibold">{faq.question}</span>
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
+              <AccordionItem
+                value={`item-${faq.id}`}
+                className="border rounded-lg px-6 hover-elevate"
+                data-testid={`accordion-faq-${faq.id}`}
+              >
+                <AccordionTrigger className="text-left hover:no-underline">
+                  <span className="font-semibold">{faq.question}</span>
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            </motion.div>
           ))}
         </Accordion>
       </div>
