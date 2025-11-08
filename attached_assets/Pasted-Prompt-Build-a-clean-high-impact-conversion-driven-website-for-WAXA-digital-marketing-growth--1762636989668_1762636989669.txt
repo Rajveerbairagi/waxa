@@ -1,0 +1,152 @@
+Prompt:
+"Build a clean, high-impact, conversion-driven website for WAXA (digital marketing & growth agency) in Next.js (latest App Router) + Tailwind CSS + Framer Motion. Use the structure and style cues from Hi Social’s website.
+
+Brand Style
+
+White background, generous white space
+
+Accent colours: brand blue (#007bff) and brand green (#00c76a)
+
+A modern professional look: clean typography, full-width sections, large imagery, clear calls to action
+
+Subtle animations: section fade-in, hover lift, arrow/graph motif
+
+Pages & Navigation
+
+/ Home
+
+/solutions (or /services)
+
+/approach (or /about/how-we-work)
+
+/advantages
+
+/references (Portfolio / Case studies)
+
+/faq
+
+/contact
+
+Sticky transparent navbar that becomes solid on scroll
+
+Home Page Structure (mirroring Hi-Social layout)
+
+Hero Section
+
+Big headline: “Growth Starts Here”
+
+Sub-headline: “We help brands scale through strategic marketing, engaging content, and performance-driven campaigns.”
+
+Primary CTA button: “Start Project”
+
+Secondary CTA: “See Case Studies”
+
+Background: full-width image or subtle gradient with arrow/graph motif
+
+Solutions / Problems vs Solutions
+
+Headline: “Your problems. Our promises.”
+
+Two-column layouts illustrating BEFORE (without WAXA) / AFTER (with WAXA) — similar to Hi Social’s “OHNE … MIT …”.
+
+Use cards or icons for each problem/solution pair.
+
+Approach / How We Work
+
+Step-by-step process: e.g., Content Production → Content Editing & Posting → Ads & Ongoing Optimization.
+
+Visual icons or numbered steps.
+
+Advantages / Benefits
+
+Headline: “Your advantages with us as partner.”
+
+Use short blurbs/cards: Individual Service, On-Site Support, ROI Focus, Long-Term Collaboration, 24/7 Support.
+
+Use imagery that shows team, movement, growth.
+
+References / Portfolio / Case Studies
+
+Headline: “From startup to enterprise”
+
+Show logos of clients, or testimonial snippets, or metrics.
+
+At least one detailed case study: highlight numbers, challenge, result.
+
+FAQ Section
+
+Q&A style: similar to Hi Social’s FAQ layout.
+
+Call to Action / Contact
+
+Final section prompting free consultation or contact. Big button.
+
+Footer
+
+Quick links (Solutions, Approach, Advantages, References, FAQ, Contact)
+
+Social icons
+
+Legal links (Impressum, Privacy, Cookies)
+
+Components to Build
+
+Navbar (with scroll behaviour)
+
+Hero
+
+Problem-Solution Comparison Cards
+
+Process Steps
+
+Benefit Cards Grid
+
+Client Logos Carousel or Grid
+
+Case Study Component
+
+FAQ Accordion
+
+Contact Form
+
+Footer
+
+Animations & UX
+
+Fade-in / slide-up as sections come into view
+
+Hover lift on cards
+
+Animated counters for key metrics in case study
+
+Sticky transparent-to-solid navbar
+
+Use next/image for optimized images
+
+SEO metadata, responsive design, lazy-load heavy sections
+
+Performance & Code Quality
+
+Use Next.js App Router (+ app/ folder)
+
+Server Components for static sections where possible
+
+Well-commented code
+
+Tailwind config with custom brand colours
+
+Clean file/folder structure (pages, components, layouts, styles)
+
+Use TypeScript (optional but recommended)
+
+Final Deliverable
+
+Full project skeleton + selected pages fully built (Home + Solutions + References)
+
+Reusable components
+
+Placeholder content ready to be replaced
+
+Animations integrated
+
+Responsive mobile, tablet, desktop versions
